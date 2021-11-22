@@ -1,6 +1,6 @@
 .dropdownMenu{
-    text-align: center;
-    padding-bottom: 3%;
+  display: flex; 
+  justify-content: center
 }
 .highcharts-figure, .highcharts-data-table table {
     min-width: 360px; 
@@ -82,6 +82,5 @@
   #season,
   #simulate{
   text-align: center;
-  display: block;
   }
 }
