@@ -1,153 +1,145 @@
 function generateIntensityOfSunlight(season,timeOfTheDay){
     if(season === "winter"){
         if(timeOfTheDay === "morning"){
-            var arrSunlightMorning = [];
-            console.log("5AM Winter Morning");
-            let maxMorning = 30;
-            let minMorning = 0;
-            let labels =[];
+            let arr = [];
+            let max = 30; // Gornja i donja granica za niz koji zelimo da generisemo
+            let min = 0;
+            let labels =[]; //promenjiva koja prikuplja vrednosti vremena 
             for(let i = 5; i < 12;i++){
-                let sunlightInMorning = Math.floor(Math.random() * (maxMorning - minMorning + 1) + minMorning);
-                arrSunlightMorning.push(sunlightInMorning);
-                labels.push(`${i}AM`);
-                console.log("At: " + i + "AM"+ " " + "Sunlight intesity is: " + sunlightInMorning + "%");
-
+                let sunlightInMorning = Math.floor(Math.random() * (max - min + 1) + min); // generisanje random vrednosti u opsegu od 0-30
+                arr.push(sunlightInMorning); // dodavanje generisane vrednosi u niz 
+                labels.push(`${i}AM`); // dodavanje vrednosti vremena u niz kao string
             }
-            let mostSunlinght = Math.max.apply(null,arrSunlightMorning);
-            console.log("Highest brightness was: " + mostSunlinght + "%");
-            document.getElementById("maxValue").innerHTML = `Max brightness value: ${mostSunlinght}%`;
-            let shades = positionOfShades(arrSunlightMorning);
-            return {data:arrSunlightMorning,labels:labels,shades:shades};
-
-
+            let mostSunlinght = Math.max.apply(null,arr); //promenjiva koja uzima vrednost najvece vrednosit iz niza 
+            document.getElementById("maxValue").innerHTML = `Max brightness value: ${mostSunlinght}%`; // prikaz maksimalne vrednosti u HTML
+            let shades = positionOfShades(arr); // poziv funkcije koja simulira blokiranje svetlosti
+            return {data:arr,labels:labels,shades:shades}; // vracanje objekata 
         }
+
         else if(timeOfTheDay === "noon"){
-            var arrSunlightNoon = [];
-            console.log("12PM Winter Noon");
-            let maxNoon = 70;
-            let minNoon = 30;
+            let arr = [];
+            let max = 70;
+            let min = 30;
             let labels =[];
-            for(let n = 12; n < 19; n++){
-                let sunlightInNoon = Math.floor(Math.random() * (maxNoon - minNoon + 1) + minNoon);
-                arrSunlightNoon.push(sunlightInNoon);
-                if(n === 12){
-                    time = n;
+            for(let i = 12; i < 19; i++){
+                let sunlightInNoon = Math.floor(Math.random() * (max - min + 1) + min);
+                arr.push(sunlightInNoon);
+                if(i === 12){
+                    time = i;
                     timeIndex = "AM";
                 }else{
-                    time = n - 12;
+                    time = i - 12;
                     timeIndex = "PM";
                 }
                 labels.push(`${time} ${timeIndex}`);
-                console.log("At: " + time + timeIndex + " " + "Sunlight intesity is: " + sunlightInNoon + "%");
             }
-            let mostSunlinght = Math.max.apply(null,arrSunlightNoon);
-            console.log("Highest brightness was: " + mostSunlinght + "%");
+            let mostSunlinght = Math.max.apply(null,arr);
             document.getElementById("maxValue").innerHTML = `Max brightness value: ${mostSunlinght}%`;
-            let shades = positionOfShades(arrSunlightNoon);
-            return {data:arrSunlightNoon,labels:labels,shades:shades};
-
+            let shades = positionOfShades(arr);
+            return {data:arr,labels:labels,shades:shades};
         }
+
         else if(timeOfTheDay === "night"){
-            var arrSunlightNight = [];
-            console.log("7PM Winter Night");
-            let maxNight = 10;
-            let minNight = 0;
+            let arr = [];
+            let max = 10;
+            let min = 0;
             let labels = [];
-            for(let j = 7; j < 17; j++){
-                let sunlightInNight = Math.floor(Math.random() * (maxNight - minNight + 1) + minNight);
-                arrSunlightNight.push(sunlightInNight);
-                if(j <= 12){
-                    time = j;
+            for(let i = 7; i < 17; i++){
+                let sunlightInNight = Math.floor(Math.random() * (max - min + 1) + min);
+                arr.push(sunlightInNight);
+                if(i <= 12){
+                    time = i;
                     timeIndex = "PM";
                 }else{
-                    time = j-12;
+                    time = i-12;
                     timeIndex = "AM";
                 }
                 labels.push(`${time} ${timeIndex}`);
-                console.log("At: " + time + timeIndex + " " + "Sunlight intesity is: " + sunlightInNight + "%");
             }
-            let mostSunlinght = Math.max.apply(null,arrSunlightNight);
-            console.log("Highest brightness was: " + mostSunlinght + "%");
+            let mostSunlinght = Math.max.apply(null,arr);
             document.getElementById("maxValue").innerHTML = `Max brightness value: ${mostSunlinght}%`;
-            let shades = positionOfShades(arrSunlightNight);
-            return {data:arrSunlightNight,labels:labels,shades:shades};
+            let shades = positionOfShades(arr);
+            return {data:arr,labels:labels,shades:shades};
+        }
+
+        else {
+            console.log("error"); // zastita od pogresnog izbora
         }
     }
     else if(season === "summer"){
         if(timeOfTheDay === "morning"){
-            var arrSunlightMorning = [];
-            console.log("5AM Summer Morning");
-            let maxMorning = 50;
-            let minMorning = 10;
+            let arr = [];
+            let max = 50;
+            let min = 10;
             let labels = [];
             for(let i = 5; i < 12;i++){
-                let sunlightInMorning = Math.floor(Math.random() * (maxMorning - minMorning + 1) + minMorning);
-                arrSunlightMorning.push(sunlightInMorning);
+                let sunlightInMorning = Math.floor(Math.random() * (max - min + 1) + min);
+                arr.push(sunlightInMorning);
                 labels.push(`${i}AM`);
-                console.log("At: " + i + "AM"+ " " + "Sunlight intesity is: " + sunlightInMorning + "%");
-
             }
-            let mostSunlinght = Math.max.apply(null,arrSunlightMorning);
-            console.log("Highest brightness was: " + mostSunlinght + "%");
+            let mostSunlinght = Math.max.apply(null,arr);
             document.getElementById("maxValue").innerHTML = `Max brightness value: ${mostSunlinght}%`;
-            let shades = positionOfShades(arrSunlightMorning);
-            return {data:arrSunlightMorning,labels:labels,shades:shades};
+            let shades = positionOfShades(arr);
+            return {data:arr,labels:labels,shades:shades};
 
         }
-        if(timeOfTheDay === "noon"){
-            var arrSunlightNoon = [];
-            console.log("12PM Summer Noon");
-            let maxNoon = 100;
-            let minNoon = 50;
+        else if(timeOfTheDay === "noon"){
+            let arr = [];
+            let max = 100;
+            let min = 50;
             let labels = [];
-            for(let n = 12; n < 19; n++){
-                let sunlightInNoon = Math.floor(Math.random() * (maxNoon - minNoon + 1) + minNoon);
-                arrSunlightNoon.push(sunlightInNoon);
-                if(n === 12){
-                    time = n;
+            for(let i = 12; i < 19; i++){
+                let sunlightInNoon = Math.floor(Math.random() * (max - min + 1) + min);
+                arr.push(sunlightInNoon);
+                if(i === 12){
+                    time = i;
                     timeIndex = "AM";
                 }else{
-                    time = n - 12;
+                    time = i - 12;
                     timeIndex = "PM";
                 }
                 labels.push(`${time} ${timeIndex}`);
-                console.log("At: " + time + timeIndex + " " + "Sunlight intesity is: " + sunlightInNoon + "%");
             }
-            let mostSunlinght = Math.max.apply(null,arrSunlightNoon);
-            console.log("Highest brightness was: " + mostSunlinght + "%");
+            let mostSunlinght = Math.max.apply(null,arr);
             document.getElementById("maxValue").innerHTML = `Max brightness value: ${mostSunlinght}%`;
-            let shades = positionOfShades(arrSunlightNoon);
-            return {data:arrSunlightNoon,labels:labels,shades:shades};
+            let shades = positionOfShades(arr);
+            return {data:arr,labels:labels,shades:shades};
 
         }
-        if(timeOfTheDay === "night"){
-            var arrSunlightNight = [];
-            console.log("7PM Summer Night");
-            let maxNight = 30;
-            let minNight = 0;
+        else if(timeOfTheDay === "night"){
+            var arr = [];
+            let max = 30;
+            let min = 0;
             let labels = [];
-            for(let j = 7; j < 17; j++){
-                let sunlightInNight = Math.floor(Math.random() * (maxNight - minNight + 1) + minNight);
-                arrSunlightNight.push(sunlightInNight);
-                if(j <= 12){
-                    time = j;
+            for(let i = 7; i < 17; i++){
+                let sunlightInNight = Math.floor(Math.random() * (max - min + 1) + min);
+                arr.push(sunlightInNight);
+                if(i <= 12){
+                    time = i;
                     timeIndex = "PM";
                 }else{
-                    time = j-12;
+                    time = i-12;
                     timeIndex = "AM";
                 }
                 labels.push(`${time} ${timeIndex}`);
-                console.log("At: " + time + timeIndex + " " + "Sunlight intesity is: " + sunlightInNight + "%");
             }
-            let mostSunlinght = Math.max.apply(null,arrSunlightNight);
+            let mostSunlinght = Math.max.apply(null,arr);
             console.log("Highest brightness was: " + mostSunlinght + "%");
             document.getElementById("maxValue").innerHTML = `Max brightness value: ${mostSunlinght}%`;
-            let shades = positionOfShades(arrSunlightNight);
-            return {data:arrSunlightNight,labels:labels,shades:shades};
-            
+            let shades = positionOfShades(arr);
+            return {data:arr,labels:labels,shades:shades};
+        }
+        
+        else {
+            console.log("error"); // zastita od pogresnog izbora
         }
     }
+
+    else {
+        console.log("error"); // zastita od pogresnog izbora
+    }   
 }
+//funkcija koja simulira roletnu
 function positionOfShades(arr){
     let shades = [];
     for(let i=0;i<=arr.length;i++){
@@ -174,15 +166,19 @@ function positionOfShades(arr){
             console.log("Shades are on 100%");
             shades.push(100);
         }
+        else{
+            console.log("error"); // zastita od pogresnog izbora
+        }
     }
     return shades;
 }
 
+//pritisak na dugme simulate
 document.getElementById("simulate").onclick = function() {
     
-    var season = document.getElementById("season").value;
-    var timeOfTheDay = document.getElementById("timeOfTheDay").value;
-    let {data,labels,shades} = generateIntensityOfSunlight(season,timeOfTheDay)
-    drawGraph(season,data,labels,'container1','External illumination');
-    drawGraph(season,shades,labels,'container2','Dimming of light');
+    var season = document.getElementById("season").value; //odabir sezone
+    var timeOfTheDay = document.getElementById("timeOfTheDay").value; //odabir dela dana
+    let {data,labels,shades} = generateIntensityOfSunlight(season,timeOfTheDay); //simulacija 
+    drawGraph(season,data,labels,'container1','External illumination'); //grafik koji prikazuje generisane vrednosti sunceve svetlosti i vreme
+    drawGraph(season,shades,labels,'container2','Dimming of light'); //grafik koji prikazuje vrednosti funkcije roletne i vreme
 };
