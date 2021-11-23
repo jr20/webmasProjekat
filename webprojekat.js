@@ -142,7 +142,7 @@ function generateIntensityOfSunlight(season,timeOfTheDay){
 //funkcija koja simulira roletnu
 function positionOfShades(arr){
     let shades = [];
-    for(let i=0;i<=arr.length;i++){
+    for(let i=0;i<arr.length;i++){
     
         if(arr[i] < 20){
             console.log("Shades are on 0%");
